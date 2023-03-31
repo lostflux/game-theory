@@ -1,0 +1,56 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{31}{03}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\begin{problem}[2]
+  You are offered the chance to collect $\$x$ tax-free if the toss of a fair coin
+  comes up ``heads''; if it comes up tails you get nothing.
+  Or, instead, you can have $\$y$ tax-free outright.\\
+  Consider the six cases $x \in \set{10, 100, 1000, 10000, 100000, 1000000 }$.\\
+  In each case, what value of $y$ would make it the toughest possible decision for you?
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{r|r|r|l}
+      $x$ & $y$ & $\%$ & Reason \\
+    \midrule
+      $10$ & $100$ & $1000$ & Low winnings, play for fun (unless offered more money outright). \\
+      $100$ & $100$ & $100$ & Payoff is still low. Play for fun unless offered more money outright. \\
+      $1,000$ & $500$ & $50$ & Higher potential win justifies taking bigger risk. \\
+      $10,000$ & $1,000$ & $10$ & Higher potential win justifies taking bigger risk. \\
+      $100,000$ & $50,000$ & $50$ & Higher potential win ustifies taking bigger risk. \\
+      $1,000,000$ & $300,000$ & $30$ & Higher potential win justifies taking bigger risk. \\
+    \toprule
+    \end{tabular}
+    \caption{Potential Payoff vs. Outright Money.}
+  \end{table}
+\end{problem}
+\end{document}
