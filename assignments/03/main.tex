@@ -37,27 +37,38 @@
   with probability $p$ which is known to you and greater than $1/2$.
   If you bet $\$b$ and win, you win $\$b$; otherwise you lose the amount bet.
   What fraction of $\$a$ should you bet, to maximize your expected utility?
+
+  Suppose you bet $\$b$ which is a fraction $m$ of your total wealth $\$a$.
+  Then:
   
   \begin{align*}
     \text{Current utility} &= \log{a} \\
-    \text{Utility if you bet $\$b$ and win} &= \log{(a + b)} = \log{\frac{y + x}{y}a} \\
-    \text{Utility if you bet $\$b$ and lose} &= \log{(a - b)} \\
-    \text{Expected utility} &= p \cdot \log{(a + b)} + (1 - p) \cdot \log{(a - b)} \\
+    \text{Utility if your bet wins} &= \log{(a + b)} = \log{\parens{(1 + m)a}} = \log{(1 + m)} + \log{a} \\
+    \text{Utility if you bet $\$b$ and lose} &= \log{(a - b)} = \log{\parens{(1 - m)a}} = \log{(1 - m)} + \log{a} \\
+    \text{Expected utility} &= p \parens{\log{(1 + m)} + \log{a}} + (1 - p)\parens{\log{(1 - m)} + \log{a}} \\
+                            &= p \log{a} + (1 - p) \log{a} + p \log{(1 + m)} + (1 - p) \log{(1 - m)} \\
+                            &= \log{a} + p \log{(1 + m)} + (1 - p) \log{(1 - m)} \\
   \end{align*}
+  
+  % Note that $\log{(1-m)}$ is always negative, since $m \leq 1$.
+  To improve utility, we want to maximize the change
+  \[ p \log{(1 + m)} + (1 - p) \log{(1 - m)}. \]
 
-  Optimally, if we fix the probability $p$ then we want to optimize the amount bet $b$
-  such that the expected utility is maximized.
+  Via a little guess-work (see plots), it seems $m = 2p - 1$ is a good choice
+  to mazimize the change in utility when the probability of a favorable outcome
+  is known to be $p$.
+  \begin{figure}[H]
 
-  \begin{align*}
-    \text{Expected utility} &\geq \text{Current utility} \\
-    p \cdot \log{(a + b)} + (1 - p) \cdot \log{(a - b)} &\geq \log{a} \\
-    p \parens{ \log{(a + b)} - \log{(a - b)}} + \log{(a - b)} &\geq \log{a} \\
-    p \parens{ \log{(a + b)} - \log{(a - b)}} &\geq \log{a} - \log{(a - b)}\\
-  \end{align*}
+    \includegraphics[width=150mm]{output-linear.png}
+    \caption{The change in utility with various $p$ and various $m$.}
 
-  Given $b$ is a fraction $x/y$ of $a$;
-  \begin{align*}
-    p \parens{\log{\frac{y + x}{y}} - \log{\frac{y-x}{y}}} &\geq \log{a} - \log{\frac{y-x}{y}}\\
-  \end{align*}
+    \medskip
+
+    \includegraphics[width=150mm]{output-log.png}
+    \caption{The change in utility with various $p$ and various $m$ ($\mathbf{log}$ scale).}
+
+
+  \end{figure}
+
 \end{problem}
 \end{document}
