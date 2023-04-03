@@ -40,7 +40,7 @@
   
   \begin{align*}
     \text{Current utility} &= \log{a} \\
-    \text{Utility if you bet $\$b$ and win} &= \log{(a + b)} \\
+    \text{Utility if you bet $\$b$ and win} &= \log{(a + b)} = \log{\frac{y + x}{y}a} \\
     \text{Utility if you bet $\$b$ and lose} &= \log{(a - b)} \\
     \text{Expected utility} &= p \cdot \log{(a + b)} + (1 - p) \cdot \log{(a - b)} \\
   \end{align*}
@@ -53,6 +53,11 @@
     p \cdot \log{(a + b)} + (1 - p) \cdot \log{(a - b)} &\geq \log{a} \\
     p \parens{ \log{(a + b)} - \log{(a - b)}} + \log{(a - b)} &\geq \log{a} \\
     p \parens{ \log{(a + b)} - \log{(a - b)}} &\geq \log{a} - \log{(a - b)}\\
+  \end{align*}
+
+  Given $b$ is a fraction $x/y$ of $a$;
+  \begin{align*}
+    p \parens{\log{\frac{y + x}{y}} - \log{\frac{y-x}{y}}} &\geq \log{a} - \log{\frac{y-x}{y}}\\
   \end{align*}
 \end{problem}
 \end{document}
