@@ -2,7 +2,7 @@
 
 \input{~/latex-common/macros.tex}
 \usepackage[backend=bibtex,style=science]{biblatex}
-% \bibliography{main.bib}
+\bibliography{main.bib}
 \pgfplotsset{compat=1.18}
 
 \pagestyle{fancy}                         % fancy (allow headers, footers)
@@ -54,7 +54,7 @@
   To improve utility, we want to maximize the change
   \[ p \log{(1 + m)} + (1 - p) \log{(1 - m)}. \]
 
-  Via a little guess-work (see plots), it seems $m = 2p - 1$ is a good choice
+  Via a little guess-work (see plots below and reference~\cite{github-repo}), it seems $m = 2p - 1$ is a good choice
   to mazimize the change in utility when the probability of a favorable outcome
   is known to be $p$.
   \begin{figure}[H]
@@ -71,4 +71,8 @@
   \end{figure}
 
 \end{problem}
+
+% print bibliography
+\printbibliography
+
 \end{document}
