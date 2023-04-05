@@ -30,6 +30,9 @@
 
 \maketitle
 
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+
 \begin{problem}[4]
   \emph{Read \textbf{Chapter $0$} of Lessons in Play, and do \textbf{Problem $1$} at the end of the chapter.}
 
@@ -37,38 +40,31 @@
   Consider the position:
 
   \begin{enumalph}
-    \item Draw the complete game trees for both \textsc{cram}
-      and \textsc{domineering}. The leaves (bottoms) of the tree
+    \item Draw the complete game trees for both \cram
+      and \dom. The leaves (bottoms) of the tree
       should all be positions in which neither player can move.
       If two left (or right) options are symmetrically identical, you may omit one.
 
       \begin{figure}[H]
         
-        % Draw an empty 3x4 chessboard.
-        % Remove the arrow
-        \begin{tikzpicture}[scale=0.5]
-          % draw a 3 x 4 grid at (0,0), fill the first square
-          \fill[red!20](0,0) rectangle (1,-2);
-          \fill[red!20](0,-3) rectangle (1,-4); 
-
-          \fill[red!20](2,0) rectangle (3,-1);
-          \fill[red!20](2,-2) rectangle (3,-4);
-
-          \draw[step=1cm,gray] (0,0) grid (3,-4);
-
-
-          % \draw[step=1cm,gray] (0,0) grid (3,-4);
-
-          \draw[step=1cm,gray] (-8,-6) grid (-5,-10);
-
-          % draw edge 
-
-
-        \end{tikzpicture}
+        % include game-graph.pdf
+        \includegraphics[width=0.8\textwidth]{game-graph.pdf}
       \end{figure}
 
-    \item Who wins at \textsc{domineering} if Vertical plays first?
-      Who wins if Horizontal plays first? Who wins at \textsc{cram}?
+    \item Who wins at \dom if;
+      \begin{enumroman}
+        \item Vertical plays first? \\
+          Vertical can force a win by playing
+          the second (middle) branch of the game tree.
+        \item Horizontal plays first?
+          Horizontal one unique move (third branch of the game tree),
+          which sets up Vertical to win on the next move.
+          Therefore, If Horizontal plays first then Vertical wins.
+      \end{enumroman}
+      
+    \item Who wins at \cram? \\
+      Whomever plays first in \cram can force a win
+      by playing the second (middle) branch of the game tree.
   \end{enumalph}
 \end{problem}
 \end{document}
