@@ -1,0 +1,105 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{10}{04}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+
+% \newpage
+\begin{problem}[5]
+  Determine (with proof!) the $\mathbf{P}$ and $\mathbf{N}$ positions for \sub,
+  where the set of subtractibles is $\set{3,4,5}$.
+
+  \step
+  Recall that;
+  \begin{enumarabic}
+    \item A position is in class $\mathbf{P}$ if \emph{all} possible moves end in positions
+      in class $\mathbf{N}$.
+    \item A position is in class $\mathbf{N}$ if there exists a move that ends in a
+      position in class $\mathbf{P}$.\\
+      \emph{Note that only a single move is needed!}
+  \end{enumarabic}
+
+  By writing out the possible values for the first $23$ moves (see table on next page),
+  we see this general pattern emerge:
+
+  \[\mathbf{P} = \set{ 0, 1, 2} \cup \set{8, 9, 10} \cup \set{16, 17, 18} \cup \ldots \]
+  \[\mathbf{N} = \set{3, 4, 5, 6, 7} \cup \set{11, 12, 13, 14, 15} \cup \set{19, 20, 21, 22, 23} \cup \ldots \]
+
+  \step
+  In general, a given position $n$ is in the class $\mathbf{P}$ iff $n \pmod{8} < 3$,
+  and a given position $n$ is in the class $\mathbf{N}$ iff $n \pmod{8} \ge 3$.
+
+  \begin{table}[h!]
+    \centering
+    \begin{tabular}{||r|r|r|r|r||}
+    \bottomrule
+      Current & \multicolumn{3}{|c|}{Next} & P or N? \\
+    \midrule
+      $0$ & $\green{-3}$ & $\green{-4}$ & $\green{-5}$ & $\mathbf{P}$ \\
+      $1$ & $\green{-2}$ & $\green{-3}$ & $\green{-4}$ & $\mathbf{P}$ \\
+      $2$ & $\green{-1}$ & $\green{-2}$ & $\green{-3}$ & $\mathbf{P}$ \\
+      \midrule
+      $3$ & $\crim{0}$ & $\green{-1}$ & $\green{-2}$ & $\mathbf{N}$ \\
+      $4$ & $\crim{1}$ & $\crim{0}$ & $\green{-1}$ & $\mathbf{N}$ \\
+      $5$ & $\crim{2}$ & $\crim{1}$ & $\crim{0}$ & $\mathbf{N}$ \\
+      $6$ & $\green{3}$ & $\crim{2}$ & $\crim{1}$ & $\mathbf{N}$ \\
+      $7$ & $\green{4}$ & $\green{3}$ & $\crim{2}$ & $\mathbf{N}$ \\
+      \midrule
+      $8$ & $\green{5}$ & $\green{4}$ & $\green{3}$ & $\mathbf{P}$ \\
+      $9$ & $\green{6}$ & $\green{5}$ & $\green{4}$ & $\mathbf{P}$ \\
+      $10$ & $\green{7}$ & $\green{6}$ & $\green{5}$ & $\mathbf{P}$ \\
+      \midrule
+      $11$ & $\crim{8}$ & $\green{7}$ & $\green{6}$ & $\mathbf{N}$ \\
+      $12$ & $\crim{9}$ & $\crim{8}$ & $\green{7}$ & $\mathbf{N}$ \\
+      $13$ & $\crim{10}$ & $\crim{9}$ & $\crim{8}$ & $\mathbf{N}$ \\
+      $14$ & $\green{11}$ & $\crim{10}$ & $\crim{9}$ & $\mathbf{N}$ \\
+      $15$ & $\green{12}$ & $\green{11}$ & $\crim{10}$ & $\mathbf{N}$ \\
+      \midrule
+      $16$ & $\green{13}$ & $\green{12}$ & $\green{11}$ & $\mathbf{P}$ \\
+      $17$ & $\green{14}$ & $\green{13}$ & $\green{12}$ & $\mathbf{P}$ \\
+      $18$ & $\green{15}$ & $\green{14}$ & $\green{13}$ & $\mathbf{P}$ \\
+      \midrule
+      $19$ & $\crim{16}$ & $\green{15}$ & $\green{14}$ & $\mathbf{N}$ \\
+      $20$ & $\crim{17}$ & $\crim{16}$ & $\green{15}$ & $\mathbf{N}$ \\
+      $21$ & $\crim{18}$ & $\crim{17}$ & $\crim{16}$ & $\mathbf{N}$ \\
+      $22$ & $\green{19}$ & $\crim{18}$ & $\crim{17}$ & $\mathbf{N}$ \\
+      $23$ & $\green{20}$ & $\green{19}$ & $\crim{18}$ & $\mathbf{N}$ \\
+      \midrule
+      $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+    \end{tabular}
+    \caption{Potential Payoff vs. Outright Money.}
+  \end{table}
+\end{problem}
+\end{document}
