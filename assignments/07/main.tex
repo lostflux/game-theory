@@ -1,0 +1,104 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{12}{04}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+
+\newpage
+\begin{problem}[7]
+  In \weighted, Alice and Bob simultaneously put out one or two fingers.
+  If they put out different numbers of fingers,
+  Alice wins from Bob a number of dollars equal to the total number of fingers
+  put out (namely, in this case, 3).
+  If they put out the same number of fingers, Alice pays Bob $\$2$ or $\$4$
+  according to the total number of fingers played.
+  
+  \begin{enumalph}
+    \item Find an equilibrium pair of randomized strategies. 
+      \step
+      \begin{align*}
+        % \mathbb{P} &=
+        % \begin{bmatrix}
+        %   (-2, +2) & (+3, -3) \\ (+3, -3) & (-4, +4)
+        % \end{bmatrix}\\ \\
+        A &= \begin{bmatrix}
+          -2 & +3 \\ +3 & -4
+        \end{bmatrix}\\ \\
+        B &= \begin{bmatrix}
+          +2 & -3 \\ -3 & +4
+        \end{bmatrix}
+      \end{align*}
+
+      \step
+      Alice has two options:
+      \begin{enumroman}
+        \item Put out one finger. Half the time, she loses $\$2$,
+          and half the time she wins $\$3$, for an expected value
+          of $\$(0.5 \cdot (-2) + 0.5 \cdot (+3)) = \$+0.5$ per turn.
+        \item Put out two fingers.
+          Half the time, she loses $\$4$,
+          and half the time she wins $\$3$ for an expected value of
+          $\$(0.5 \cdot (-4) + 0.5 \cdot (+3)) = \$-0.5$ per turn.
+      \end{enumroman}
+      Alice is better off putting out one finger.
+
+      \step
+      Bob has two options:
+      \begin{enumroman}
+        \item Put out one finger. Half the time, he wins $\$2$,
+          and half the time he loses $\$3$ for an expected value
+          of $\$(0.5 \cdot (+2) + 0.5 \cdot (-3)) = \$-0.5$
+          per turn.
+        \item Put out two fingers.
+          Half the time, he wins $\$4$,
+          and half the time he loses $\$3$ for an expected value of
+          $\$(0.5 \cdot (+4) + 0.5 \cdot (-3)) = \$+0.5$ per turn.
+      \end{enumroman}
+      Bob is better off putting out two fingers.
+
+      \medskip
+    \item What is the expected outcome if these strategies are employed?
+    
+      \step
+      In the equilibrium pair of strategies, Alice puts out one finger
+      and Bob puts out two fingers.
+      Since the fingers do not match, Alice wins $\$+3$ per turn.
+  \end{enumalph}
+
+
+  
+\end{problem}
+\end{document}
