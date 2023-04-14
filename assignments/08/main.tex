@@ -1,0 +1,76 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{14}{04}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+
+% \newpage
+\begin{problem}[8]
+  Before last basketball season, WNBA star Vera Similitude's lifetime free-throw
+  percentage was below $80\%$. After the season, it was above $80\%$.
+  Must there have been a moment in the season when it was exactly $80\%$?
+  Justify your answer!
+
+  \medskip
+  Yes, the ratio must have been exactly $80\%$ at some point in the season.
+  Suppose that Vera has $X$ free throws in total initially, of which $Y$ were successful.
+  $X/Y$ is her lifelong free-throw ratio, which is below $0.8$.
+  Let $n = Y - X$ be the difference between her successful and unsuccessful free throws.
+  To show that the percentage must equal $80\%$:
+  \begin{enumarabic}
+    \item Order $n$ containers. For each free throw, fill up the containers with coins.
+      But consider each container ``full'' if it has $4$ coins in it.
+    \item For each new free throw that she successfully scores this season,
+      add a coin to the next non-full container.
+    \item For each new free throw that she misses, order one extra container
+      that needs to be filled.
+  \end{enumarabic}
+  \medskip
+  In this way, each container corresponds to a miss, and each coin corresponds to
+  a successful free throw. Since each container is matched up to four coins,
+  the ration is $80\%$ exactly when all the available containers have been filled
+  with $4$ coins each.
+  On the other hand, the ratio is \emph{above} $80\%$ only if there are coins
+  that cannot be fit in a container, since all containers are already filled with
+  $4$ coins each.
+  But for this to happen, there must have been a moment in the season when
+  all containers were filled, and no extra coin was yet to be added to a container.
+  Hence, there must have been a moment in the season when the ratio was exactly $80\%$.
+
+  \medskip
+
+\end{problem}
+\end{document}
