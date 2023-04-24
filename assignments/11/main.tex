@@ -1,0 +1,104 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{24}{04}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+
+\newpage
+\begin{problem}[11]
+  Replace each of the first five letters of your official Dartmouth email address
+  by its position in the alphabet (a number between $1$ and $26$),
+  and consider the resulting $5$-stack \nim position.
+  Find all winning moves (if any) from that position.
+
+  % double columns
+  \begin{multicols}{2}
+    \[
+      \text{letters:} \texttt{amitt}
+    \]
+
+    Converting to binary:
+    \begin{align*}
+      \textsc{A} = 1 &=  00001 \\
+      \textsc{M} = 13 &= 01101 \\
+      \textsc{I} = 9 &=  01001 \\
+      \textsc{T} = 20 &= 10100 \\
+      \textsc{T} = 20 &= 10100 \\
+    \end{align*}
+    
+    \begin{figure}[H]
+      \begin{tabular}{c@{\,}c@{\,}c@{\,}c@{\,}c@{\,}|c}
+        0 & 0 & 0 & 0 & 1 & A\\
+        0 & 1 & 1 & 0 & 1 & M\\
+        0 & 1 & 0 & 0 & 1 & I\\
+        1 & 0 & 1 & 0 & 0 & T\\
+        1 & 0 & 1 & 0 & 0 & T\\
+        \midrule
+        0 & 0 & 1 & 0 & 1  
+      \end{tabular}
+      \caption{Initial game value.}
+    \end{figure}
+    A winning move needs to change the game's value to $0$,
+    meaning it must make position $1$ and $3$ have an even number of
+    $1$s across the five stacks.
+    With the limitation to deduction, only one possible move achieves that:
+    \begin{enumarabic}
+      \item Remove $5$ stones from stack $2$ (for letter \textsc{M}).
+        This changes the value of the stack from 01101 (equal to 13, or \textsc{M})
+        to 01000 (equal to 8, or \textsc{H}) with this new value;
+
+        \begin{figure}[H]
+          \begin{tabular}{c@{\,}c@{\,}c@{\,}c@{\,}c@{\,}|c}
+            0 & 0 & 0 & 0 & 1 & A\\
+            0 & 1 & 0 & 0 & 0 & H\\
+            0 & 1 & 0 & 0 & 1 & I\\
+            1 & 0 & 1 & 0 & 0 & T\\
+            1 & 0 & 1 & 0 & 0 & T\\
+            \midrule
+            0 & 0 & 0 & 0 & 0  
+          \end{tabular}
+          \caption{Game value after move.}
+        \end{figure}
+        \step
+        This move goes from \textsc{amitt} to \textsc{ahitt}.
+        Since the new game state has value $0$, it is in class $P$
+        and is therefore a winning position for the player who just moved.
+    \end{enumarabic}
+  \end{multicols}
+\end{problem}
+\end{document}

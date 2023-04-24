@@ -46,5 +46,16 @@
   In the other game a move can produce a position of value $\ast k$ for any $k \in \cK$,
   where $\cK$ is a finite set of nonnegative integers.
   What sets $\cK$ result in this sum of games being in the outcome class $\P$?
+
+  The sum of the two games is in class $\P$ only if the XOR sum of their values is $0$.
+  For this to happen, either;
+  \begin{enumarabic}
+    \item The sum of the values of the stacks in the other game must equal $5$
+      (example: $3$ and $2$).
+    \item The XOR sum of the values of the stack(s) in the other game must equal $5$
+      (example: $7$ and $2$).
+  \end{enumarabic}
+
+  Therefore, \[ \cK = \set{ n_1, \ldots, n_k \mid \parens{\sum_i n_i = 5} \text{ or } \parens{n_1 \oplus \ldots \oplus n_k = 5} } \]
 \end{problem}
 \end{document}
