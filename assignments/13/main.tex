@@ -1,0 +1,99 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{28}{04}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+
+\newpage
+\begin{problem}[13]
+  State and prove the $n$-dimensional Sperner's Lemma, by induction on $n$.
+
+  \begin{lemma}
+    If an $n$-dimensional simplex is colored with $n+1$ colors,
+    such that each of its $n-1$ facets is colored with $n$ colors
+    having the $n$ endpoints of the facet differently colored,
+    then the number of $n$-dimensional simplices with all $n+1$ colors
+    is odd.
+  \end{lemma}
+
+  \step
+  The $2$-dimensional Sperner's Lemma states that if a triangle with vertices colored
+  $1$,$2$,$3$ is "triangulated" into smaller triangles, and vertices are colored
+  $1$, $2$ or $3$ with the stipulation that outside vertices
+  (that is, vertices on an edge of the big triangle) can only get a color
+  of one of the big edge's endpoints, then an odd number of cells (small triangles) get all the colors.
+
+  \step
+  As we showed in class, the $1$-dimensional Sperner's Lemma is true since,
+  when applied to a line segment with the condition that the two endpoints
+  of the line segment are not colored the same, then there must be an odd
+  number of rainbow segments.
+
+  \step
+  In the $2$-dimensional segment, we have $3$ colors and a triangle shape.
+  Each edge of the triangle is a $1$-dimensional instance of Sperner's Lemma,
+  since only the colors at the two endpoints are permitted on points along the edge,
+  and the edges must once again be colored differently.
+  By induction, assume that Sperner's Lemma is valid for the $1$-dimensional case,
+  then each edge of the $2$-dimensional triangle must have an odd number of rainbow segments.
+  If we draw a path from one rainbow segment inwards,
+  with the condition that all segments the path crosses are colored with those same two colors,
+  then the path must either be halted by a rainbow triangle,
+  or it must exit the triangle on the same edge (since all the other edges
+  strictly do not have that pair of coloring on a segment).
+  Given that the segment has an odd number of rainbow segments,
+  and all segments that exit will result in a pairing of segments, the number that
+  are stopped must be odd, so the number of rainbow triangles must be odd.
+
+  \step
+  In the $n$-dimensional case, the $n$-dimensional simplex is composed of
+  $n+1$ facets, each of dimension $n-1$. It also has $n+1$ colors.
+  Supposing that the $n-1$-dimensional Sperner's Lemma is true,
+  then each facet must have an odd number of rainbow simplices.
+  If we draw a path from one rainbow simplex inwards,
+  with the condition that all simplices the path crosses are colored with those same $n-1$ colors,
+  then the path must either be halted by a rainbow simplex,
+  or it must exit the simplex on the same facet (since all the other facets
+  strictly have some other color not present on this facet).
+  The facet has odd rainbow simplices, and those paths that enter and exit the facet
+  pair up rainbow simplices, so the number of stopped paths must be odd, meaning the
+  $n+1$-dimensional simplex must have also an odd number of rainbow simplices.
+
+\end{problem}
+\end{document}
