@@ -1,0 +1,82 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{01}{05}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+
+\newpage
+\begin{problem}[14]
+  Find an equilibrium for Alice and Bob playing Rock, Paper, Scissors with the following amendment:
+  
+  \begin{itemize}
+    \item If Alice crushes Bob's scissors with her rock, or Bob cuts Alice's paper with her scissors,
+    it's treated as a double win for one (and a double loss for the other).
+  \end{itemize}
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{c c | c c c | c }
+       & & \multicolumn{3}{c|}{Bob} \\
+      % \bottomrule
+      & & R & P & S \\
+      \midrule
+      \multirow{3}{*}{Alice} & R & (0,0) & (-1,1) & (2,-2) & $\mathbf{\frac{+1}{3}}$ \\
+      % \midrule
+      & P & (1,-1) & (0,0) & (-2,2) & $\mathbf{\frac{-1}{3}}$ \\
+      % \midrule
+      & S & (-1,1) & (1,-1) & (0,0) & $\mathbf{0}$\\
+      \midrule
+      & & $\mathbf{0}$ & $\mathbf{0}$ & $\mathbf{0}$ & \\
+      % \bottomrule
+    \end{tabular}
+    \caption{Payoffs for Alice, Bob respectively.}
+  \end{table}
+  Also: read in Tadelis about proving that Nash equilibria exist.
+
+  Bob's outcomes remain unchanged; while the modification let's him potentially
+  win double if he plays scissors and Alice plays paper,
+  he also loses double if he plays scissors and Alice plays rock,
+  so the advantage and disadvantage even out.
+  Therefore, Bob does not have a best strategy since he has no advantage to any of his choices.
+  Alice, on the other hand, has a clear advantage if she plays rock ---
+  she can either go even with Bob, lose one, or win two.
+  Thus, Alice's best strategy is to play rock, while Bob does not have a dominant strategy.
+  Therefore, a nash equilibrium does not exist.
+
+\end{problem}
+\end{document}
