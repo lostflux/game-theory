@@ -1,0 +1,86 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{03}{05}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+\def \cc { \mathbf{cc} }
+
+\newpage
+\begin{problem}[15]
+  The convex closure $\cc(U)$ of a set $U \subseteq E_d$
+  is the intersection of all convex sets containing $U$. Show that $\cc(U)$
+  can also be described as the set of all points $c_1 p_1 + c_2 p_2 + \ldots + c_n p_n$
+  where $n$ is any positive integer, each $p_i$ is any point (i.e., d-tuple) of $U$,
+  and the $c_i$'s are arbitrary nonnegative reals that sum to $1$.
+
+  \step
+  A convex set is a set such that for any two points in the set, every point on the line
+  segment connecting them is also in the set.
+  While $U$ need not be convex, $\cc(U)$ is the smallest convex set containing $U$.
+  This means that $\cc(U)$ is the set of all points in $U$ and all points on the lines
+  between any two points in $U$. Thus, every point in $\cc(U)$ is either:
+  \begin{enumroman}
+    \item A member of $U$. In this case, we can write the point $p$ as $1 \cdot p$.
+    \item The point is not a member of $U$, but is on the line segment between some
+      two points in $U$.
+      Let $p_1$ and $p_2$ be two points in $U$, and $p_3$ be any point on the line segment
+      between $p_1$ and $p_2$, then we can write $p_3 = p_1 + \lambda (p_2 - p_1)$ for some
+      $\lambda \in [0,1]$.
+      Refactoring, we see that $p_3 = (1 - \lambda) p_1 + \lambda p_2$. Most importantly,
+      $c_1 = 1 - \lambda$ and $c_2 = \lambda$ are nonnegative and sum to $1$.
+      Suppose $p_4 \in U$ is any other point, then every point on the line segment between
+      $p_3$ and $p_4$ is also contained in $\cc(U)$. Using the same process as we did for $p_3$,
+      if $p_5$ is any point on the line segment between $p_3$ and $p_4$, then we can write
+      $p_5 = (1 - \mu) p_3 + \mu p_4$ for some $\mu \in [0,1]$. Since
+      $p_3 = (1 - \lambda) p_1 + \lambda p_2$, we can write
+      \[ p_5 \quad = 
+        \quad (1 - \mu) ((1 - \lambda) p_1 + \lambda p_2) + \mu p_4 \quad =
+        \quad (1 - \mu)(1 - \lambda) p_1 + (1 - \mu)\lambda p_2 + \mu p_5.
+      \]
+      % \step
+      Since \crim{$(1 - \lambda) + \lambda = 1$},
+      \[ \zaff{(1 - \mu)(1 - \lambda) + (1 - \mu)\lambda} = \green{(1 - \mu)(\crim{(1 - \lambda) + \lambda})} = 1 - \mu. \]
+      On the other hand, $(1 - \mu) + \mu = 1$, so the constants in the equation for $p_5$ sum to $1$.
+      Using the same logic, we can extend the equation to all points between $p_5$ and any other point
+      in $U$, since any such point on the line segment must be contained in $\cc(U)$.
+      Therefore, every point in $\cc(U)$ can be written as such a combination of points in $U$
+      with nonnegative coefficients that sum to $1$.
+  \end{enumroman}
+\end{problem}
+\end{document}
