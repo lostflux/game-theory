@@ -18,7 +18,7 @@
 
 \begin{document}
 
-\newdate{due-date}{03}{05}{2023}
+\newdate{due-date}{05}{05}{2023}
 
 \title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
 \author{Amittai Siavava}
@@ -42,45 +42,43 @@
 \def \cc { \mathbf{cc} }
 
 \newpage
-\begin{problem}[15]
-  The convex closure $\cc(U)$ of a set $U \subseteq E_d$
-  is the intersection of all convex sets containing $U$. Show that $\cc(U)$
-  can also be described as the set of all points $c_1 p_1 + c_2 p_2 + \ldots + c_n p_n$
-  where $n$ is any positive integer, each $p_i$ is any point (i.e., d-tuple) of $U$,
-  and the $c_i$'s are arbitrary nonnegative reals that sum to $1$.
+\begin{problem}[16]
 
   \step
-  A convex set is a set such that for any two points in the set, every point on the line
-  segment connecting them is also in the set.
-  While $U$ need not be convex, $\cc(U)$ is the smallest convex set containing $U$.
-  This means that $\cc(U)$ is the set of all points in $U$ and all points on the lines
-  between any two points in $U$. Thus, every point in $\cc(U)$ is either:
+  A $\$10$ bill is auctioned to $10$ people in the following way:
+  \begin{itemize}
+    \item Each person chooses a non-negative integer number of dollars to submit as a sealed bid.
+    \item The $\$10$ bill goes to a uniformly random person who was among the highest bidders,
+    in return for the amount bid.
+  \end{itemize}
+  Find and count all pure Nash equilibria for this game.
+  (You may assume everyone's utility for money is linear in the range $0$ to $10$.)
+
+  \step
+  If a player bids the single highest bid, then they win the bidding with probability $1$.
+  However, if a player is among $x$ players with the highest bid, then the player has a probability
+  $1/n$ of winning the bid.
+  Therefore, whenever possible (except when they make a loss or win nothing by betting $\$10$),
+  each person would prefer to bid the lowest number that is higher than all other bids.
+  So, for instance, if the second-highest bid is $\$5$,
+  then the winning bidder would prefer to bid $\$6$ rather than $\$9$, since in the first
+  case they win $\$4$ while in the second case they only win $\$1$.
+  However, in all cases, each player would prefer their bid to be \emph{at least}
+  equal to the maximum bid; that way, they always have some chance of winning.
+
+  \step
+  In the Nash equilibria, no player has anything to gain by changing their bid.
+  This means:
   \begin{enumroman}
-    \item A member of $U$. In this case, we can write the point $p$ as $1 \cdot p$.
-    \item The point is not a member of $U$, but is on the line segment between some
-      two points in $U$.
-      Let $p_1$ and $p_2$ be two points in $U$, and $p_3$ be any point on the line segment
-      between $p_1$ and $p_2$, then we can write $p_3 = p_1 + \lambda (p_2 - p_1)$ for some
-      $\lambda \in [0,1]$.
-      Refactoring, we see that $p_3 = (1 - \lambda) p_1 + \lambda p_2$. Most importantly,
-      $c_1 = 1 - \lambda$ and $c_2 = \lambda$ are nonnegative and sum to $1$.
-      Suppose $p_4 \in U$ is any other point, then every point on the line segment between
-      $p_3$ and $p_4$ is also contained in $\cc(U)$. Using the same process as we did for $p_3$,
-      if $p_5$ is any point on the line segment between $p_3$ and $p_4$, then we can write
-      $p_5 = (1 - \mu) p_3 + \mu p_4$ for some $\mu \in [0,1]$. Since
-      $p_3 = (1 - \lambda) p_1 + \lambda p_2$, we can write
-      \[ p_5 \quad = 
-        \quad (1 - \mu) ((1 - \lambda) p_1 + \lambda p_2) + \mu p_4 \quad =
-        \quad (1 - \mu)(1 - \lambda) p_1 + (1 - \mu)\lambda p_2 + \mu p_5.
-      \]
-      % \step
-      Since \crim{$(1 - \lambda) + \lambda = 1$},
-      \[ \zaff{(1 - \mu)(1 - \lambda) + (1 - \mu)\lambda} = \green{(1 - \mu)(\crim{(1 - \lambda) + \lambda})} = 1 - \mu. \]
-      On the other hand, $(1 - \mu) + \mu = 1$, so the constants in the equation for $p_5$ sum to $1$.
-      Using the same logic, we can extend the equation to all points between $p_5$ and any other point
-      in $U$, since any such point on the line segment must be contained in $\cc(U)$.
-      Therefore, every point in $\cc(U)$ can be written as such a combination of points in $U$
-      with nonnegative coefficients that sum to $1$.
+    \item No player gains an advantage by raising their bid --- therefore, their bid
+      must either be the maximum bid that still wins something ($\$9$) or be $\$1$
+      more than all the other bids. Since the condition holds for \emph{all} players,
+      it must be the first case and not the second.
+    \item They do not gain an advantage by lowering their bid --- therefore, their bid
+      must not be more than $\$1$ over the second-highest bid(s).
   \end{enumroman}
+
+  With all these in mind, we can determine that the Nash equilibrium happens when
+  \emph{every} player's bid is $\$9$. There is only one Nash equilibrium.
 \end{problem}
 \end{document}
