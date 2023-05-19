@@ -1,0 +1,73 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{19}{05}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+\def \cc { \mathbf{cc} }
+\def \hackenbush { \textsc{LR hackenbush} }
+\def \clobber { \textsc{clobber} }
+
+\newpage
+  \begin{problem}[21]
+    Take any partizan game $G$ with blue and red pieces (e.g., \clobber)
+    and create an equivalent game $G'$ by having both players play the blue pieces,
+    but the pieces switch colors after each move.
+    Then $G'$ is impartial, right?
+    So how can it be equivalent to a partizan game, like the \clobber position
+    with value ``up'' shown in class?
+
+    \step
+    $G'$ is not impartial.
+    We may assume that $G'$ is impartial because moves at any given position
+    start with the given active color moving first
+    (for example, if the active color is blue, then moves are always made on blue,
+    but after each move the blues become red and the reds become blue).
+    However, since the colors always change after each move, the first player
+    and the second player effectively play different pieces, therefore
+    have different moves.
+    The game is not truly impartial because $\P$'s moves are not immediately
+    available to $\N$ or vice versa.
+
+    \step
+    However, recoloring helps simplify game analysis since, if we know the active color
+    (based on which color moved first, and how many color changes have occurred),
+    then we may only focus on the relevant moves for that color in the current turn,
+    the relevant moves for the other color in the next turn, and so on.
+  \end{problem}
+\end{document}
