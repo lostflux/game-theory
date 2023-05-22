@@ -1,0 +1,89 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{22}{05}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+\def \cc { \mathbf{cc} }
+\def \hackenbush { \textsc{LR hackenbush} }
+\def \clobber { \textsc{clobber} }
+
+\newpage
+  \begin{problem}[22]
+    Let $S$ be a board of size $2n$ for a selection game $G$ in which,
+    prior to each move, the next card is drawn from a well-shuffled deck
+    of $n$ blue cards and $n$ red cards.
+    The next move is then taken by Louise if the card is blue, Richard if red.
+    The payoff to Louise is $f(S_1)$, where $f$ is a function from subsets of $S$
+    of size $n$ to the real numbers, and the payoff to Richard is $-f(S_1)$,
+    where $S_1$ is the set Louise ends up with.
+    Show that the (expected) value to Louise of this game is the expected value of $f(R)$,
+    where $R$ is a uniformly random subset of $S$ of size $n$.
+
+    \step
+    In each turn, the payoff is determined by the set $S$ and not the who makes the move.
+    The expected value to Louise is the averaged value of all such sets of size $n$.
+    The number of such possible sets of size $n$ is $\binom{2n}{n}$.
+    Therefore, the probability of any one subset of $2^S$ of size $n$ being selected
+    is $1/\binom{2n}{n}$. The expected value of the game to Louise is
+    \[ \mathbf{value}(G) = \sum_{i = 1}^{\binom{2n}{n}} \frac{1}{\binom{2n}{n}} f(S_i) \]
+
+    \step
+    Now, consider if a uniformly random $R \subset S$ of size $n$ is selected.
+    There are $2n$ possible candidates for the first element of the subset,
+    $2n-1$ for the second, and so on up to the $n$'th.
+    In total, there are $\binom{2n}{n}$ possible configurations of subsets of size $n$.
+    The probability of $R$ being any one specific subset is $1/\binom{2n}{n}$.
+    Therefore, the expected value of $R$ is:
+    \[ f(R) = \sum_{i = 1}^{\binom{2n}{n}} \frac{1}{\binom{2n}{n}} f(S_i) \]
+
+    \step
+    Therefore, \[ \mathbf{value}(G) = f(R). \]
+    
+    \vfill
+    \step
+    \textbf{References}
+    \begin{enumroman}
+      \item For random turn games, see \url{https://arxiv.org/pdf/math/0508580.pdf}.
+      \item For Knuth's Surreal Numbers, see \\ \url{
+        https://people.math.harvard.edu/~knill/teaching/
+        mathe320_2015_fall/blog15/surreal1.pdf
+      }.
+    \end{enumroman}
+  \end{problem}
+\end{document}
