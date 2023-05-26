@@ -1,0 +1,64 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{22}{05}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+\def \cc { \mathbf{cc} }
+\def \hackenbush { \textsc{LR hackenbush} }
+\def \clobber { \textsc{clobber} }
+
+% \newpage
+  \begin{problem}[24]
+    You have the opportunity to make one bid on a widget whose value to its owner is,
+    as far as you know, uniformly random between $\$0$ and $\$100$.
+    What you do know is that you are so much better at operating the widget than he is,
+    that its value to you is $80\%$ greater than its value to him.
+    (Yes, you don't know your own valuation!)
+    If you offer more than the widget is worth to the owner, he will sell it.
+    But you only get one shot. How much should you bid?
+
+    \step
+    Suppose I bid $\$m$, and the owner agrees to sell the widget.
+    That means that the value of the widget to the owner is less than $\$m$.
+    Since the value is uniformly distributed, the expected value is $\$m/2$,
+    making the widget's value to me $\$(m/2 + 0.8 \cdot m/2) = \$0.9m$.
+    Therefore, if I bid and the owner agrees to sell, I'm most certainly making a loss!
+    It's best to not bid.
+  \end{problem}
+\end{document}
