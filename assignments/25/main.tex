@@ -57,13 +57,13 @@
     person $1$'s town.
     Since the prison does not end up in any of towns $2, 3, \ldots, n$, the representative for each of those towns
     initially pays the amount $d_2$, $d_3$, $\ldots$, $d_n$. The amount is then distributed equally among the $n$ people.
-    That is, each person receives \[ \frac{1}{n} \sum_{2}^{n} d_i. \]
+    That is, each person receives \[ \tau = \frac{1}{n} \sum_{2}^{n} d_i. \]
     Thus, the representative for town $k$ pays
     \[
-      \mathbf{pay}(k) = \begin{cases}
-        - \frac{1}{n} \sum_{2}^{n} d_i & \text{if $k = 1$} \\
-        d_k - \frac{1}{n} \sum_{2}^{n} d_i & \text{if $k \neq 1$}
-      \end{cases},
+      \mathbf{penalty}(k) = \begin{cases}
+        - \tau & \text{if $k = 1$} \\
+        d_k - \tau & \text{if $k \neq 1$}
+      \end{cases}
     \]
     where a negative amount means the person \emph{receives} that amount, and a positive amount means 
     the person \emph{pays} that amount.
