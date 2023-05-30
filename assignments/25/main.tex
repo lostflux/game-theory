@@ -1,0 +1,71 @@
+\documentclass[11pt, reqno]{amsart}
+
+\input{~/latex-common/macros.tex}
+\usepackage[backend=bibtex,style=science]{biblatex}
+% \bibliography{main.bib}
+\pgfplotsset{compat=1.18}
+
+\pagestyle{fancy}                         % fancy (allow headers, footers)
+\fancyhf{}                                % clear all header/footer settings.
+\cfoot{\thepage}                          % set page-numbers in footer.
+% \lhead{\textit{\textbf{ Amittai, S}}}   % set name in header, left.
+% \rhead{\textsc{Math 71: Algebra}}       % set class name in header, right.
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{document}
+
+\newdate{due-date}{31}{05}{2023}
+
+\title{CS-49: Game Theory\\ Amittai Siavava \\ \displaydate{due-date}}
+\author{Amittai Siavava}
+% \date{\today}
+
+
+\setlength{\headheight}{13.0pt}
+\setlength{\footskip}{15.0pt}
+
+\maketitle
+
+\bigskip
+
+\def \cram { \textsc{cram} }
+\def \dom { \textsc{domineering} }
+\def \sub { \textsc{subtraction} }
+\def \weighted { \textsc{weighted odds and evens}}
+\def \nim { \textsc{nim} }
+\def \P { \mathbf{P}}
+\def \N { \mathbf{N}}
+\def \cc { \mathbf{cc} }
+\def \hackenbush { \textsc{LR hackenbush} }
+\def \clobber { \textsc{clobber} }
+
+% \newpage
+  \begin{problem}[25]
+    $n$ people are involved in a \emph{pivotal mechanism} (see top half of \textbf{page 299} in Tadelis)
+    to decide where to locate a prison. Person $i$ is just willing to pay $d_i$ to avoid having the prison in his town,
+    where $0 < d_1 < d_2 < \ldots < d_n$.
+    The prison has to go somewhere.
+    Where does it go, and what does each player earn or pay?
+
+    \step
+    If we use the amount each town is willing to pay to keep the prison out as a measure of overall `discomfort'
+    associated with locating the prison in that town, then the prison should go to the town with the least discomfort,
+    person $1$'s town.
+    Since the prison does not end up in any of towns $2, 3, \ldots, n$, the representative for each of those towns
+    initially pays the amount $d_2$, $d_3$, $\ldots$, $d_n$. The amount is then distributed equally among the $n$ people.
+    That is, each person receives \[ \frac{1}{n} \sum_{2}^{n} d_i. \]
+    Thus, the representative for town $k$ pays
+    \[
+      \mathbf{pay}(k) = \begin{cases}
+        - \frac{1}{n} \sum_{2}^{n} d_i & \text{if $k = 1$} \\
+        d_k - \frac{1}{n} \sum_{2}^{n} d_i & \text{if $k \neq 1$}
+      \end{cases},
+    \]
+    where a negative amount means the person \emph{receives} that amount, and a positive amount means 
+    the person \emph{pays} that amount.
+  \end{problem}
+\end{document}
